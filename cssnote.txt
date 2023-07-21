@@ -1,0 +1,22 @@
+after configuration of the files and components folder in the nextjs 
+we are now moving to the new making of the gradient animation 
+
+here is the css component which is responsible for the animation
+export const GradientBackgroundCon  = styled.div`
+background: linear-gradient(to right,#000046,#1CB5E0); //left to right animation
+background-size: 400% 400%;
+animation : gradient 6s ease infinite; animation is driven by this animation syntax 
+height:100vh; // view height
+@keyframes gradient {
+    0% {
+        background-position : 0% 50%;
+    }
+    50% {
+        background-position : 100% 50%;
+    }
+    100% {
+        background-position : 0% 50%;
+    }
+}
+
+`;

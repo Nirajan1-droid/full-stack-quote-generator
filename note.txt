@@ -1,0 +1,127 @@
+user - req-> appsync- graphql - aws lamda- base 64 - > client 
+->scaling up according the traffic
+
+npx create-next-app@latest --ts
+
+
+
+
+eslint- yes
+tailwind - no
+src/ no 
+app router - no
+import alias -yes
+
+create .babelrc file>
+{
+    "presets":["next/babel"],
+    "plugins":[["styled-components",{"ssr":true, "displayName":true}]]
+}
+
+replace next.config.js
+with this;
+/** @type {import('next').NextConfig} */
+const nextConfig = {
+  reactStrictMode: false,
+  compiler:{
+    styledComponents:{
+      displayName:true,//enabled bydefault in developement, disabled in production to reduce file size.
+      //setting this will override the default for all environments.
+      ssr:true,//enabled by default
+      fileName:true,//enabled by dafault
+      topLevelImportPaths:[],//empty by dafault
+      meaninglessFileNames:['index'],//deafult to index
+      cssProp:true,//enabled by default
+      namespace:'',//empty by default 
+      minify:false,//not supported
+      transpileTemplateLiterals:false,//not supported
+      pure:false,//not supported
+
+    }
+  }
+}
+
+module.exports = nextConfig
+
+
+#now instead of using the css, scss or tailwind css we are now using the styled components 
+here the css is confined in the component and that component can be used many transpileTemplateLiterals
+#the reusability and the states of the props of the data elements from the one component to the another component 
+decides the activation of the css component for the componnet by the help of && operator
+
+npm i  --save styled-components
+
+also installing the babel-plugin-styled-components
+: 
+npm i --save-dev babel-plugin-styled-components
+
+##$ one trick to reload the vs coce window is : ctrl_+ shift + p and search reload window and click it.
+
+# now filtering the index.tsx what we need
+
+pages>index.tsx>
+
+import Head from 'next/head'
+import Image from 'next/image'
+
+import styles from '@/styles/Home.module.css'
+ 
+
+export default function Home() {
+  return (
+    <>
+      <Head>
+        <title>Inspirational Quote</title>
+        <meta name="description" content="A fun content to generate quotes" />
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <link rel="icon" href="/favicon.ico" />
+      </Head>
+      <main className={`${styles.main}`}>
+        
+      </main>
+    </>
+  )
+}
+
+
+#then startup the project with 
+npm run dev
+
+here the @ is not working . so we need to add in next.config.js
+>>
+
+
+const path = require('path');
+
+const nextConfig = {
+  webpack: (config, { isServer }) => {
+    // Add alias for the '@' symbol to the root of your project
+    config.resolve.alias['@'] = path.join(__dirname);
+
+    // Important: Return the modified config
+    return config;
+  },
+
+  ...}
+
+  remove everythin in global.css and home.module.css
+
+  create components folder
+
+  lets create background for the web. components>quotegenerator>quote.tsx
+  # we are giving the dynamic background
+
+  there is the problem for the styled-components for 
+  import styled from 'styled-components';
+import Link from "next/link";
+import Image from "next/image";
+
+//from styled components we are creating the css component  
+export const GradientBackground  = styled.dev`
+
+`;
+
+so we need to 
+npm i --save-dev @types/styled-components
+
+
