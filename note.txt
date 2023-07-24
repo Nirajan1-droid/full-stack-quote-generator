@@ -125,3 +125,50 @@ so we need to
 npm i --save-dev @types/styled-components
 
 
+
+
+# to upload the image to the nextjs file system you can create the assets folder in the root direcotory
+then upload save the image things there 
+
+# after creating the page and setting the icons 
+# now created the footer css component and the footer component in the index.tsx
+
+there is the numberofQuotes which is needed to be shown from the server response time.
+
+initially this is the js code . but as we are using the tsx
+  const [numberofQuotes,setNumberofQuotes] = useState(0);
+
+the numberofQuotes is either number or null. the type protection is required as:
+
+  const [numberofQuotes,setNumberofQuotes] = useState<Number|null>(0);
+  <type eithercase | type orcase>
+this number is later connected to the dynamo db of the cloud.
+
+
+
+
+#the ignoring the browser setting for the linking and opening the new window
+
+<FooterLink href="https://facebook.com" target="_blank" rel="noopener noreferrer">
+           <tr/> Vision Tech Nepal
+
+            </FooterLink>
+             here the noopener noreferrer ignores the browser default setting
+             and 
+             _blank is responsible to open the link in the new tab
+
+#talking about the styled component the prefix of the component is resposible for the type of configuration we apply to the component
+
+here , footerLink and Redspan , Link and Span is response for the different scenarios for the page
+however if we just refer thease as the individual component as the div i.e. styled.div not as styled.span or styled.(Link) the the space allocation for the page becomes different
+
+
+[[[
+  the reson:
+  Styled Components are designed to create styled versions of HTML elements, and the element you choose to style determines how it is
+   rendered in the DOM. When you use styled.div, you are styling a div element, which is a block-level element. This means it takes the
+    full width available and creates a new line for each element.
+
+On the other hand, when you use styled.span, you are styling a span element, which is an inline element. span elements do not create a 
+new line and only take the necessary space for their content. They can be used within a line of text or within other block-level elements like div.
+]]]
